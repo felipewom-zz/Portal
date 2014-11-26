@@ -18,7 +18,7 @@ h2. !http://twitter-badges.s3.amazonaws.com/t_logo-a.png(Follow on Twitter)!:htt
 
 Follow the project on Twitter: "@felipewom":http://twitter.com/felipewom. Please tweet some praise if you like what you've found.
 
-Copyright © 2012-13 Daniel Kehoe
+Copyright © 2041 Felipe Moura
 
 h2. Useful Links
 
