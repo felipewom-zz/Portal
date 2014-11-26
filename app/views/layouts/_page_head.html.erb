@@ -1,0 +1,10 @@
+
+<div id="page-head" class="panel-heading hidden-xs">
+  <h5>
+    <% if current_user.id == 3%>
+      <%= render 'layouts/footer' %>
+    <% end %>
+  <b><%= controller.controller_name.capitalize %></b>
+   </h5>
+</div>
+<%= render "layouts/messages"%>

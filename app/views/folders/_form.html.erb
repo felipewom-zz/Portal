@@ -1,0 +1,16 @@
+<%= simple_form_for(@folder) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, :input_html => {:rows => 2}, :label => "Descrição" %>
+    <% if current_user.has_role? :admin %>
+       <%= f.input  :role_id, :collection => Role.all,
+                   :label_method => :name,
+                   :value_method => :id,
+                   :label => "Permissão",
+                   :selected  =>  current_user.roles.first.id%>
+    <% end %>
+    <div class="col-xs-offset-2">
+      <%= link_to 'Cancelar', manager_path, class: "btn btn-default" %>
+      &nbsp;&nbsp;
+      <%= f.button :submit, label: "Salvar", class: "btn btn-default" %>
+    </div>
+<% end %>

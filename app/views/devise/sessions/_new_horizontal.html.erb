@@ -1,0 +1,16 @@
+<ul class="nav navbar-nav">
+  <% if params["controller"] != 'devise/sessions' %>
+    <li>
+      <%= simple_form_for(resource, :as => resource_name,
+                          :url => session_path(resource_name),
+                          :html => {:class => 'navbar-form navbar-left' }) do |f| %>
+        <%= f.input :login,:input_html => { :size => 20}, :label => false, :type => "text", :placeholder => "username", :autofocus => true %>
+        <%= f.input :password, :input_html => {:maxlength => 20, :size => 20}, :label => false, :type => "password", :placeholder => "Password" %>
+        <%= f.button :submit, "Entrar", data: { disable_with: "Entrando em sua conta..." }, :class => 'btn btn-success' %>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to '<span class="glyphicon glyphicon-plus white"></span> Registrar'.html_safe, new_user_registration_path%>
+  </li>
+</ul>

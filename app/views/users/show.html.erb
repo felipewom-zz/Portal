@@ -1,0 +1,11 @@
+<h3><img class="img-circle" style="width: 100px; height: 100px;" src="../images/profile/<%= @user.profile_picture %>"></img>
+  <%= @user.name.capitalize %></h3>
+<% @user.last_name %>
+<p>Login: <strong><%= @user.login %></strong></p>
+<p>Email: <%= @user.email if @user.email %></p>
+<p>Permissão: <%= @user.roles[0].name.titleize unless @user.roles.blank? %></p>
+<% if @user.id == current_user.id %>
+  <%= link_to 'Editar conta', edit_user_registration_path, :class => 'btn btn-default' %>
+<% else %>
+  <%= link_to 'Voltar', users_path, :class => 'btn btn-default' %>
+<% end %>

@@ -1,0 +1,27 @@
+<div id="new_folder" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content col-lg-8">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span class="fa fa-folder fa-fw"></span> Criar Pasta</h4>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for folder, :url => "/new_folder", :html => { :multiple => true} do |f| %>
+          <%= f.error_notification %>
+            <%= f.input :name, :required => true %>
+            <%= f.input :description, :input_html => {:rows => 2}, :label => "Descrição" %>
+            <% if current_user.has_role? :admin %>
+              <%= f.input  :role_id, :collection => Role.all,
+                           :label_method => :name,
+                           :value_method => :id,
+                           :label => "Permissão",
+                           :selected  =>  Role.first%>
+            <% end %>
+      </div>
+      <div class="modal-footer">
+            <%= f.submit "Criar", :type => "submit", :class => "btn btn-default" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

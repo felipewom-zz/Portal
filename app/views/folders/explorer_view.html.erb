@@ -1,0 +1,19 @@
+    <i class="fa fa-hdd-o fa-fw"></i>&nbsp;&nbsp;Gerenciador de Pastas
+    <%= render 'explorer' %>
+<script>
+  jQuery(document).ready(function($) {
+    $(".clickableRow").click(function() {
+      window.document.location = "#";
+    });
+  });
+  $(document).ready(function() {
+    $('#selectall').click(function() {
+      $('.selectedId').prop('checked', this.checked);
+    });
+    $('.selectedId').change(function() {
+      var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+      $('#selectall').prop("checked", check);
+    });
+  });
+</script>
+

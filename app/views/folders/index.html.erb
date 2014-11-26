@@ -1,0 +1,36 @@
+<%= link_to '<i class="fa fa-folder fa-fw"></i> Criar Pasta'.html_safe, new_folder_path,:title => "Criar nova pasta", class: "btn" %>
+<%= render 'uploaders/modal_form'%>
+<table class="table table-striped table-bordered table-hover" id="dataTables">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th class="hidden-xs">Descrição</th>
+      <th class="hidden-xs">Permissão</th>
+      <th class="hidden-xs">Autor</th>
+      <!--<th>Criação</th>-->
+      <!--<th>Atualização</th>-->
+      <th style="position: relative; text-align: center;"><span title="Links" class="fa fa-link fa-fw"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @folders.each do |folder| %>
+    <tr>
+      <td title=" <%= 'Autor: ' +folder.author unless folder.author.nil?%>
+<%=' Descrição: '+folder.description unless folder.description.nil?%>
+<%=' Criação: '+ folder.created_at.strftime("%d, %b %Y - %H:%M") unless folder.created_at.nil?%>
+<%=' Atualizado: '+  folder.updated_at.strftime("%d, %b %Y - %H:%M") unless folder.updated_at.nil? %>
+<%=' Permissão: '+ folder.role.name.capitalize unless  folder.role.nil? %> ">
+        <%= link_to '<span title="Visualizar" class="fa fa-folder fa-fw"></span>'.html_safe, folder_path(folder)%> <%= folder.name %></td>
+      <td class="hidden-xs"><%= folder.description %></td>
+      <td class="hidden-xs"><%= folder.role.name.capitalize unless  folder.role.nil? %></td>
+      <td class="hidden-xs"><%= folder.author.capitalize unless  folder.author.nil? %></td>
+      <!--<td><% folder.created_at.strftime("%d, %b %Y - %H:%M") %></td>-->
+      <!--<td><% folder.updated_at.strftime("%d, %b %Y - %H:%M") %></td>-->
+      <td><%= link_to '<span title="Editar" class="glyphicon glyphicon-pencil white"></span>'.html_safe, edit_folder_path(folder)%>
+
+        <%= link_to '<span title="Deletar" class="glyphicon glyphicon-trash white"></span>'.html_safe, folder, method: :delete, data: { confirm: 'Deseja deletar?' }%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= data_tables %>

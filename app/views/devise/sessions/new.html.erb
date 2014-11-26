@@ -1,0 +1,11 @@
+<div class="well">
+  <h2>Login do Sistema</h2>
+  <%= simple_form_for(resource, :as => resource_name,
+                      :url => session_path(resource_name),
+                      :html => { :class => "form-vertical col-xs-12 col-sm-12 col-md-12 col-lg-12" }) do |f| %>
+    <%= f.input :login,:input_html => { :size => 20}, :type => "text", :placeholder => "username", :autofocus => true %>
+    <%= f.input :password, :input_html => {:maxlength => 20, :size => 12}, :type => "password", :placeholder => "password"%>
+    <%= f.input :remember_me, :label => "Memorizar" ,:as => :boolean if devise_mapping.rememberable? %>
+    <%= f.button :submit, "Entrar", data: { disable_with: "Entrando em sua conta..." }, :class => 'btn btn-success' %>
+  <% end %>
+</div>

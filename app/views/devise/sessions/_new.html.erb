@@ -1,0 +1,25 @@
+<div class="container" style="padding-top: 50px">
+  <div class="row vertical-center-row">
+      <div class="row ">
+        <div class="col-xs-3 col-xs-offset-4" style="background:#f5f5f5;color:#000000; border-radius: 4px">
+          <h3 class="text-center"><strong>Login</strong></h3>
+          <%= simple_form_for(resource, :as => resource_name,
+                              :url => session_path(resource_name),
+                              :role => "form") do |f| %>
+            <div class="input-group col-lg-12">
+            <%= f.label :login %>
+            <%= f.input_field :login,:type => "text", :placeholder => "username", :autofocus => true %>
+            </div>
+            <div class="input-group col-lg-12">
+            <%= f.label :password %>
+            <%= f.input_field :password, :type => "password", :placeholder => "password",  :value => ""%>
+            </div>
+            <%= f.input :remember_me, :label => "Memorizar" ,:as => :boolean if devise_mapping.rememberable? %>
+              <div class="input-group col-lg-8 col-lg-offset-2" style="padding-bottom: 10px">
+                <%= f.button :submit, "Entrar", data: { disable_with: "Entrando em sua conta..." }, :class => "btn btn-success btn-block" %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>

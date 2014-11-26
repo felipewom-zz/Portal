@@ -1,0 +1,20 @@
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+                    :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors resource %>
+  <%= f.input :name ,:label => "Nome" , :type => "text", :placeholder => "Nome", :autofocus => true%>
+  <%= f.input :last_name,  :type => "text", :placeholder => "Sobrenome", :autofocus => true %>
+  <%= f.input :login, :label =>"Username", :type => "text", :placeholder => "Username", :autofocus => true %>
+  <%= f.input :email, :type => "text", :placeholder => "Email", :autofocus => true, :required => true %>
+  <%= f.input :phone, :label => "Telefone", :placeholder => "Telefone", :autofocus => true %>
+  <%= f.input :password, :autocomplete => "off", :placeholder => "Deixe em branco para manter", :required => false %>
+  <%= f.input :password_confirmation, :label => "Confirmação" , :placeholder => "Para alterar confirme a nova senha", :type => "password", :autofocus => true, :required => false %>
+  <%= f.input :current_password, :label => "Password atual" ,:type => "password", :autofocus => true, :required => true %>
+<%= f.button :submit, 'Salvar', :class => 'btn-primary' %>
+  <% if current_user.has_role? :admin %>
+    <%= link_to "Cancelar conta", registration_path(resource_name),
+                :data => { :confirm => "Tem certeza?" },
+                :method => :delete,
+                :class => 'btn' %>
+  <% end %>
+<% end %>

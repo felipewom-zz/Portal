@@ -1,0 +1,38 @@
+
+  <h2><%= @orgtree.user.name %></h2>
+<br>
+
+  <b>Parente:</b>
+  <%= @orgtree.parent %>
+<br>
+
+  <b>Descrição:</b>
+  <%= @orgtree.description %>
+<br>
+
+  <b>Cargo:</b>
+  <%= @orgtree.desc_job %>
+<br>
+
+  <b>Telefone:</b>
+  <%= @orgtree.user.phone %>
+<br>
+
+  <b>Email:</b>
+  <%= @orgtree.user.email %>
+<br>
+
+  <b>Templatename:</b>
+  <%= @orgtree.templateName %>
+<br>
+
+  <b>Href:</b>
+  <%= @orgtree.href %>
+<br>
+
+  <b>Itemtitlecolor:</b>
+  <%= @orgtree.itemTitleColor %>
+<br>
+<%= link_to 'Edit', edit_orgtree_path(@orgtree), class: "btn btn-default" %>
+<%= link_to 'Back', orgtrees_path, class: "btn btn-default" %>
+<%= link_to 'New Orgtree', new_orgtree_path, class: "btn btn-default" %>

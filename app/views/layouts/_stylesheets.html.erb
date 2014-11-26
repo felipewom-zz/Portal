@@ -1,0 +1,43 @@
+<!-- stylesheets -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= content_for?(:title) ? yield(:title) : "Portal CTO" %></title>
+<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Portal CTO" %>">
+<%= favicon_link_tag 'favicon.ico', rel: 'apple-touch-icon' %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+<%= javascript_include_tag "application", :media => "all" %>
+<%= csrf_meta_tags %>
+<% form_authenticity_token.to_s %>
+<script>
+  $(document).ajaxSend(function(e, xhr, options) {
+    var token = $("meta[name='csrf-token']").attr("content");
+    xhr.setRequestHeader("X-CSRF-Token", token);
+      // Function that will allow us to know if Ajax uploads are supported
+    function supportAjaxUploadWithProgress() {
+      return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
+// Is the File API supported?
+      function supportFileAPI() {
+        var fi = document.createElement('INPUT');
+        fi.type = 'file';
+        return 'files' in fi;
+      };
+// Are progress events supported?
+      function supportAjaxUploadProgressEvents() {
+        var xhr = new XMLHttpRequest();
+        return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
+      };
+// Is FormData supported?
+      function supportFormData() {
+        return !! window.FormData;
+      }
+    }
+// Actually confirm support
+    if (supportAjaxUploadWithProgress()) {
+// Ajax uploads are supported!
+// Change the support message and enable the upload button
+      var notice = document.getElementById('support-notice');
+      notice.innerHTML = "Your browser supports HTML5 uploads with AJAX. Go try me! :-)";
+    }
+  });
+</script>
+<%= yield(:head) %>
+

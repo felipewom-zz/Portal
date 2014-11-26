@@ -1,0 +1,82 @@
+<script>
+  initFullFormAjaxUpload();
+  // Init the single-field file upload
+  function initFullFormAjaxUpload() {
+    var form = document.getElementById('new_uploader');
+    form.onsubmit = function() {
+// FormData receives the whole form
+      var formData = new FormData(form);
+// We send the data where the form wanted
+      var action = form.getAttribute('action');
+// Code common to both variants
+      sendXHRequest(formData, action);
+// Avoid normal form submission
+      return false;
+    }
+  }
+  // Once the FormData instance is ready and we know
+  // where to send the data, the code is the same
+  // for both variants of this technique
+  function sendXHRequest(formData, uri) {
+// Get an XMLHttpRequest instance
+    var xhr = new XMLHttpRequest();
+// Set up events
+    xhr.upload.addEventListener('loadstart', onloadstartHandler, false);
+    xhr.upload.addEventListener('progress', onprogressHandler, false);
+    xhr.upload.addEventListener('load', onloadHandler, false);
+    xhr.addEventListener('readystatechange', onreadystatechangeHandler, false);
+// Set up request
+    xhr.open('POST', uri, true);
+// Fire!
+    xhr.send(formData);
+  }
+  // Handle the start of the transmission
+  function onloadstartHandler(evt) {
+    var div = document.getElementById('upload-status');
+    div.innerHTML = 'Enviando arquivo...';
+  }
+  // Handle the end of the transmission
+    function onloadHandler(evt) {
+      var div = document.getElementById('upload-status');
+      var change = document.getElementById('alt')
+      change.onclick = function (){
+        div.innerHTML = 'Selecione a pasta e os arquivos para armazenar.';
+        $("#barprog").addClass( "hidden" );
+        var perc = document.getElementById('perc');
+        perc.style.width = '0%';
+        perc.innerHTML = '';
+      }
+    }
+  // Handle the progress
+  function onprogressHandler(evt) {
+    var div = document.getElementById('progress');
+    var percent = Math.round(evt.loaded/evt.total*100);
+    $("#barprog").removeClass( "hidden" );
+    var perc = document.getElementById('perc');
+    perc.style.width= percent+'%';
+    perc.innerHTML = percent+'%';
+    div.innerHTML = 'Progress: ' + percent + '%';
+  }
+  // Handle the response from the server
+  function onreadystatechangeHandler(evt) {
+    var status, text, readyState;
+    try {
+      readyState = evt.target.readyState;
+      text = evt.target.responseText;
+      status = evt.target.status;
+    }
+    catch(e) {
+      return;
+    }
+//    if (readyState == 4 && status == '200' && evt.target.responseText) {
+    var status = document.getElementById('upload-status');
+    status.innerHTML = 'Arquivo Armazenado!';
+//      var result = document.getElementById('result');
+//      result.innerHTML = '<p>The server saw it as:</p><p>' + evt.target.responseText + '</p>';
+//    }
+  }
+</script>
+<!-- Placeholders for messages set by event handlers -->
+<p id="progress" class="hidden"></p>
+<!--<p id="result"></p>-->
+

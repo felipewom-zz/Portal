@@ -1,0 +1,12 @@
+  <%= simple_form_for(@orgtree, :defaults => { :wrapper_html => {:class => 'form-group'},
+                                                :input_html => { :class => 'vertical-form' } }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :user_id, collection: @users, group_method: :id, :class => "form-control" %>
+    <%= f.input :parent, :label => "Parente" , :type => "number", :class => "form-control"%>
+    <%= f.input :description , :label => "Descrição" ,:class => "form-control" %>
+    <%= f.input :desc_job , :label => "Cargo" ,:class => "form-control" %>
+    <%= f.input :href, :label => "Site" , :class => "form-control" %>
+    <%= f.input :itemTitleColor, :label => "Cor" , :class => "form-control" %>
+    <br/>
+    <%= f.button :submit, :label => "Criar membro" , :type => "submit", :class => "btn btn-primary"%>
+  <% end %>

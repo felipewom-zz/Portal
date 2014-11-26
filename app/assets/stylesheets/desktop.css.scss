@@ -1,0 +1,303 @@
+
+//DEVICES-MEDIA---------
+//Acima de largura 1366px
+@media(min-width:1366px) {
+  body {
+    padding-top: 50px;
+  }
+  .pagination-header{
+    margin-top: 10px !important;
+  }
+  #manager_view{
+    #div-expand-folder {
+      background-color: #ffffff;
+      border-color: #ded4d4;
+      border-radius: 5px;
+      border-style: solid;
+      border-width: 1px;
+      margin: 0 0 -1px;
+      a{
+        i{
+          padding-top: 5px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+        text-decoration: none;
+      }
+    }
+    .active i.fa-folder{display:inline-block; color: #DFBA41; padding-bottom: 2px}
+    .active i.fa-folder-open{display:none;color: #DFBA41; padding-bottom: 2px}
+    .active i.fa-minus-circle{display:none;padding-top: 7px!important;}
+    .active i.fa-plus-circle{display:inline-block;padding-top: 7px!important;}
+    .inactive i.fa-folder-open{display:inline-block;color: #DFBA41; padding-bottom: 2px}
+    .inactive i.fa-folder{display:none;color: #DFBA41; padding-bottom: 2px}
+    .inactive i.fa-plus-circle{display:none;padding-top: 7px!important;}
+    .inactive i.fa-minus-circle{display:inline-block;padding-top: 7px!important;}
+    #manager-folder-name{
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      text-overflow: ellipsis;
+      top: 5px;
+      white-space: nowrap;
+      width: 500px;
+      font-size: 14px;
+      color: #6e6e6e;
+      font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    }
+    .dataTables_wrapper{
+      font-size: 10px;
+      td{
+        vertical-align: middle ;
+      }
+      select.input-sm, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn {
+        height: 24px!important;
+        line-height: 22px!important;
+        font-size: 10px;
+      }
+      .input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn {
+        border-radius: 3px;
+        font-size: 10px;
+        height: 24px;
+        line-height: 1.5;
+        padding: 5px 10px;
+      }
+      span, i{
+        text-align: center;
+        font-size: 18px;
+        padding-left: 20px;
+      }
+    }
+  }
+  .w2ui-col-on-off, .w2ui-grid-searches{
+    table{
+      tbody{
+        tr{
+          td{
+            color: #000000;
+            label{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  .table{
+    background-color: #E8E8E8;
+    color: #000000;
+    overflow:auto;
+    height: 100% !important;
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  #alert_org{
+    .modal-dialog{
+      margin: 30px auto;
+      width: 40%;
+    }
+  }
+  .orgdiagram{
+    height: 768px!important;
+  }
+  #page-wrapper {
+
+  }
+  .expand{
+    margin: 0 0 0 250px;
+    padding-right: 30px;
+    padding-left: 30px;
+    height: 100%;
+  }
+  #login{
+    position: relative;
+    padding-top: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px !important;
+  }
+  #wrapper-logged-off{
+    width: 100% !important;
+    height: 100%!important;
+  }
+  #side-bar{
+//    min-height: 544px;
+//    height: 100% !important;
+//    overflow: scroll;
+  }
+  .navbar-static-side {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    height: auto !important;
+    overflow: auto!important;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    margin-left: auto;
+  }
+  #register{
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+}
+//Acima de largura 768px até 1366px
+@media(min-width:768px) and (max-width: 1365px) {
+  body {
+    padding-top: 50px;
+  }
+  .pagination-header{
+    margin-top: 10px !important;
+  }
+  #manager_view{
+    #div-expand-folder {
+      background-color: #ffffff;
+      border-color: #ded4d4;
+      border-radius: 5px;
+      border-style: solid;
+      border-width: 1px;
+      margin: 0 0 -1px;
+      a{
+        i{
+          padding-top: 5px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+        text-decoration: none;
+      }
+    }
+    .active i.fa-folder{display:inline-block; color: #DFBA41; padding-bottom: 2px}
+    .active i.fa-folder-open{display:none;color: #DFBA41; padding-bottom: 2px}
+    .active i.fa-minus-circle{display:none;padding-top: 7px!important;}
+    .active i.fa-plus-circle{display:inline-block;padding-top: 7px!important;}
+    .inactive i.fa-folder-open{display:inline-block;color: #DFBA41; padding-bottom: 2px}
+    .inactive i.fa-folder{display:none;color: #DFBA41; padding-bottom: 2px}
+    .inactive i.fa-plus-circle{display:none;padding-top: 7px!important;}
+    .inactive i.fa-minus-circle{display:inline-block;padding-top: 7px!important;}
+    #manager-folder-name{
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      text-overflow: ellipsis;
+      top: 5px;
+      white-space: nowrap;
+      width: 300px;
+      font-size: 14px;
+      color: #6e6e6e;
+      font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    }
+    .dataTables_wrapper{
+      font-size: 10px;
+      td{
+        vertical-align: middle ;
+      }
+      select.input-sm, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn {
+        height: 24px!important;
+        line-height: 22px!important;
+        font-size: 10px;
+      }
+      .input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn {
+        border-radius: 3px;
+        font-size: 10px;
+        height: 24px;
+        line-height: 1.5;
+        padding: 5px 10px;
+      }
+      span, i{
+        font-size: 16px;
+        text-align: center;
+        padding-left: 20px;
+      }
+    }
+  }
+  .w2ui-col-on-off, .w2ui-grid-searches{
+    table{
+      tbody{
+        tr{
+          td{
+            color: #000000;
+            label{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  .table{
+    background-color: #E8E8E8;
+    color: #000000;
+    overflow:auto;
+    height: 100% !important;
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  #alert_org{
+    .modal-dialog{
+      margin: 30px auto;
+      width: 40%;
+    }
+  }
+
+  #page-wrapper {
+
+  }
+  .expand {
+    margin: 0 0 0 250px;
+    padding-right: 30px;
+    padding-left: 30px;
+    height: 100%;
+  }
+  #login{
+    position: relative;
+    padding-top: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px !important;
+  }
+  #wrapper-logged-off{
+    width: 100% !important;
+    height: 100%!important;
+  }
+  #side-bar{
+//    min-height: 544px;
+//    height: 100% !important;
+//    overflow-y: scroll;
+  }
+  .navbar-static-side {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    height: 100% !important;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    margin-left: auto;
+  }
+  #register{
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+}

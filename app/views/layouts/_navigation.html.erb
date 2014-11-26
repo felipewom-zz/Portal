@@ -1,0 +1,250 @@
+<div class="navbar-header">
+  <button title="Menu Principal" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <div  class="navbar-brand" style="position: relative; top: -14px; left: -18px;">
+    <ul class="nav navbar-left hidden-xs">
+      <li class="tooltip-sidebar-toggle" >
+        <a id="sidebar-toggle" title="Ocultar Menu lateral" data-placement="right" data-toggle="tooltip" href="" data-original-title="Ocultar Menu">
+          <i class="fa fa-bars" style="color: #bbbbbb"></i>
+        </a>
+      </li>
+    </ul>
+    <a id="logo-brand" href="../../home" class="btn" title="Portal CTO versão 1.0.0"><img src="../images/logoheader.png" class="hidden-xs"/>
+      <strong id="portal-brand" > Portal CTO <i style="font-size: 8px;" class="text-muted">v 1.0.0</i></strong>
+    </a>
+  </div>
+</div>
+<!-- /.navbar-header -->
+<ul id="topbar" class="nav navbar-top-links navbar-right">
+  <li class="dropdown" title="Página Principal">
+    <a class="dropdown-toggle" href="/home">
+      &nbsp;<i class="fa fa-home" style="font-size: 18px">&nbsp;&nbsp;</i>
+    </a>
+  </li>
+  <li class="dropdown" title="Banco de Dados">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+      <i class="fa fa-clipboard fa-fw" ></i>  <i class="fa fa-caret-down"></i>
+    </a>
+    <ul id="dropdown" class="dropdown-menu dropdown-messages">
+      <% if current_user.id == 3 %>
+        <% if params["controller"] == 'folders' %>
+          <li>
+            <%= link_to '<span class="fa fa-folder-open fa-fw" title="Pastas"></span> Pastas'.html_safe, folders_path, :class => "btn"%>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to '<span class="fa fa-folder fa-fw" title="Pastas"></span> Pastas'.html_safe, folders_path, :class => "btn" %>
+          </li>
+        <% end %>
+        <% if params["controller"] == 'uploaders' %>
+          <li>
+            <%= link_to '<span class="fa fa-file-text fa-fw" title="Upload/Download de Arquivos"></span> Documentos'.html_safe, uploaders_path, :class => "btn"%>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to '<span class="fa fa-file fa-fw" title="Upload/Download de Arquivos"></span> Documentos'.html_safe, uploaders_path, :class => "btn" %>
+          </li>
+        <% end %>
+      <% end %>
+      <li>
+        <%= link_to '<span class="fa fa-hdd-o fa-fw" title="Folders Manager"></span> Gerenciar Pastas'.html_safe, manager_path, :class => "btn" %>
+      </li>
+      <li>
+        <%= link_to '<span class="fa  fa-sitemap fa-fw" title="Membros da Orgchart"></span> Tabela Organizacional'.html_safe, orgtrees_path, :class => "btn" %>
+      </li>
+      <!--<li class="divider"></li>-->
+      <!--<li>-->
+        <!--<a class="btn" href="#">-->
+          <!--<strong>Read All Messages</strong>-->
+          <!--<i class="fa fa-angle-right"></i>-->
+        <!--</a>-->
+      <!--</li>-->
+    </ul>
+    <!-- /.dropdown-messages -->
+  </li>
+<!-- /.dropdown exemplos -->
+<% if current_user.id == 3 %>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+      <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    </a>
+    <ul id="dropdown" class="dropdown-menu dropdown-tasks">
+      <li>
+        <a href="" class="btn">
+          <div>
+            <p>
+              <strong>Task 1</strong>
+            </p>
+            <p>
+              <span class="pull-right text-muted">40% Complete</span>
+            </p>
+            <br>
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="sr-only">40% Complete (success)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <p>
+              <strong>Task 2</strong>
+            </p>
+            <p>
+              <span class="pull-right text-muted">20% Complete</span>
+            </p>
+            <br>
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="sr-only">20% Complete</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <p>
+              <strong>Task 3</strong>
+            </p>
+            <p>
+              <span class="pull-right text-muted">60% Complete</span>
+            </p>
+            <br>
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                <span class="sr-only">60% Complete (warning)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <p>
+              <strong>Task 4</strong>
+            </p>
+            <p>
+              <span class="pull-right text-muted">80% Complete</span>
+            </p>
+            <br>
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                <span class="sr-only">80% Complete (danger)</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <strong>See All Tasks</strong>
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+    <!-- /.dropdown-tasks -->
+  </li>
+  <!-- /.dropdown -->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+      <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    </a>
+    <ul id="dropdown" class="dropdown-menu dropdown-alerts">
+      <li>
+        <a href="" class="btn">
+          <div>
+            <span class="fa fa-comment fa-fw"></span> New Comment
+            <span class="pull-right text-muted small">4 minutes ago</span>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <span class="fa fa-twitter fa-fw"></span> 3 New Followers
+            <span class="pull-right text-muted small">12 minutes ago</span>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <span class="fa fa-envelope fa-fw"></span> Message Sent
+            <span class="pull-right text-muted small">4 minutes ago</span>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <span class="fa fa-tasks fa-fw"></span> New Task
+            <span class="pull-right text-muted small">4 minutes ago</span>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="" class="btn">
+          <div>
+            <span class="fa fa-upload fa-fw"></span> Server Rebooted
+            <span class="pull-right text-muted small">4 minutes ago</span>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="btn" href="">
+          <strong>See All Alerts</strong>
+          <span class="fa fa-angle-right"></span>
+        </a>
+      </li>
+    </ul>
+    <!-- /.dropdown-alerts -->
+  </li>
+<!-- /.dropdown exemplos -->
+<% end %>
+  <li class="dropdown" title="Conta do usuário">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+      <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    </a>
+    <% if current_user.id == 3%>
+      <ul id="dropdown-account" class="dropdown-menu dropdown-user">
+    <% else %>
+      <ul id="dropdown" class="dropdown-menu dropdown-user">
+    <% end  %>
+      <li>
+        <%= link_to  '<span class="fa fa-user fa-fw"></span> Editar conta'.html_safe, edit_user_registration_path, :class => "btn" %>
+      </li>
+      <% if current_user.has_role? :admin %>
+        <li>
+          <%= link_to '<span class="fa fa-gear fa-fw"></span> Administrador'.html_safe, users_path, :class => "btn" %>
+        </li>
+      <% end %>
+      <li class="divider"></li>
+      <li>
+        <%= link_to '<span class="fa fa-sign-out fa-fw"></span> Logout'.html_safe, destroy_user_session_path, :method=>'delete', :class => "btn" %>
+      </li>
+    </ul>
+    <!-- /.dropdown-user -->
+    </ul>
+  </li>
+<!-- /.dropdown -->
+</ul>
+<!-- /.navbar-top-links -->

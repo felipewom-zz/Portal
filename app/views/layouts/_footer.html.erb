@@ -1,0 +1,40 @@
+<a title="Admin" data-toggle="modal" href="#footer-admin" type="button">
+  <i class="fa fa-android fa-fw">
+  </i>
+</a>
+<div id="footer-admin" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h5 class="modal-title fa fa-code">&nbsp;Parameters</h5>
+      </div>
+      <div class="modal-body">
+        <% if user_signed_in? && Rails.env.development? %>
+          <ul>
+            <li>
+              <div class="text-muted">
+                <!--By default, we assume Ajax uploads are not supported.
+                    Later we'll detect support and change this message if found.-->
+                <p id="support-notice">Your browser does not support Ajax uploads :-(<br/>The form will be submitted as normal.</p>
+                <p>params: <%= params.inspect %></p>
+                <p>params["controller"]: <%= params["controller"] %></p>
+                <p>request.path: <%= request.path %></p>
+                <p>user role: <%= current_user.roles.first.name %></p>
+                <p class="visible-xs">screen size: XS</p>
+                <p class="visible-sm">screen size: SM</p>
+                <p class="visible-md">screen size: MD</p>
+                <p class="visible-lg">screen size: LG</p>
+                <p class="visible-print">Screen size: Print</p>
+                <div class="modal-footer">
+                  <p>logged user: <%= current_user.inspect %></p>
+                  <p>debug params: <%= debug(params) %></p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+  <%= render 'layouts/navigation' %>
+</nav>
+<%= render 'layouts/leftside' %>
+<div id="page-wrapper" class="expand">
+  <div class="panel panel-default">
+    <%= page_head %>
+    <div class="panel-body">
+      <%= yield %>
+    </div>
+  </div>
+</div>

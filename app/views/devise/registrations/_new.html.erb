@@ -1,0 +1,27 @@
+<div class="container" style="padding-top: 50px">
+  <div class="row vertical-center-row">
+    <div class="row ">
+      <div class="col-xs-4 col-xs-offset-4" style="background:#f5f5f5;color:#000000; border-radius: 4px">
+        <h3 class="text-center"><strong>Registrar</strong></h3>
+        <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+                            :html => {:class => 'form-vertical col-xs-12 col-sm-12 col-md-12 col-lg-12' }) do |f| %>
+          <%= f.error_notification %>
+          <%= display_base_errors resource %>
+          <%= f.input_field :name,  :type => "text", :placeholder => "Nome", :autofocus => true %>
+          <%= f.input_field :last_name,  :type => "text", :placeholder => "Sobrenome", :autofocus => true %>
+          <%= f.input_field :login, :label =>"Username", :type => "text", :placeholder => "Username", :autofocus => true %>
+          <%= f.input_field :email, :type => "text", :placeholder => "Email", :autofocus => true, :required => true %>
+          <%= f.input_field :phone, :label => "Telefone", :placeholder => "Telefone", :autofocus => true %>
+          <%= f.input_field :password, :input_html => { :size => 20},:type => "password", :placeholder => "Senha", :autofocus => true, :required => true %>
+          <%= f.input_field :password_confirmation, :label => 'Confirmação' ,:input_html => { :size => 20}, :type => "password", :placeholder => "Confirmação", :autofocus => true, :required => true %>
+          <div class="input-group col-lg-8 " style="padding-bottom: 10px; padding-top: 10px">
+            <%= f.button :submit, 'Registrar', :class => 'btn-primary' %>
+          </div>
+        <% end %>
+        <br/>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
+

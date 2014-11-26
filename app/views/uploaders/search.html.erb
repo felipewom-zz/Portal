@@ -1,0 +1,48 @@
+<table class="table table-striped table-bordered table-hover" id="dataTables">
+  <% if @files.blank? %>
+    <thead>
+      <tr>
+        <th>Nome do Arquivo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nenhum arquivo encontrado contendo "<%= @args %>".</td>
+      </tr>
+    </tbody>
+  <% else %>
+    <thead>
+      <tr>
+        <th>Nome do Arquivo</th>
+        <th>Criação</th>
+        <th>Tipo</th>
+        <!--<th>Permissão</th>-->
+        <th>Author</th>
+        <th>Tamanho</th>
+        <th>Links</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @files.each do |uploader| %>
+        <tr>
+          <td title="<%= 'Autor: ' +uploader.author +
+                                 ' | Criação: ' + uploader.created_at.strftime("%d, %b %Y - %H:%M") +
+                                 ' | Tipo: '+uploader.content_type+
+                                 ' | Permissão: ' %><%= uploader.role.name.capitalize unless uploader.role.blank? %>
+                         <%=' | Tamanho: '+ number_to_human_size(uploader.file_size) %> "><%= uploader.file_name %></td>
+          <td><%= uploader.created_at.strftime("%H:%M  %d/%b/%Y") %></td>
+          <td><%= uploader.content_type %></td>
+          <!--<td><% uploader.role.name.capitalize unless uploader.role.blank? %></td>-->
+          <td><%= uploader.author unless uploader.author.blank? %></td>
+          <td><%= number_to_human_size(uploader.file_size) %></td>
+          <td><%= link_to '<span title="Download" class="glyphicon glyphicon-download white"></span> '.html_safe,
+                          :action => "download_file", :controller=>'uploaders', method: 'get', :id => uploader.id %>
+              <%= link_to '<span title="Deletar" class="glyphicon glyphicon-trash white"></span>'.html_safe,
+                        uploader, method: :delete,
+                        confirm: "Are you sure that you wish to delete #{uploader.file_name}?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+<% end %>
+</table>
+<%= data_tables %>

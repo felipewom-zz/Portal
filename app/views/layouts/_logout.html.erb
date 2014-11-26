@@ -1,0 +1,14 @@
+<div id="wrapper-logged-off">
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <%= render "layouts/nav_logout" %>
+  </nav>
+  <div style="top: 35px; position: relative; left: 9px;">
+    <%= render "layouts/messages"%>
+  </div>
+  <% if request.path == '/users/sign_up' %>
+    <%= render "devise/registrations/new" %>
+  <% else %>
+    <%= render "devise/sessions/new" %>
+  <% end %>
+</div><!-- /#wrapper -->

@@ -1,0 +1,28 @@
+<%= link_to 'Novo membro', new_orgtree_path, class: "btn" %>
+<table class="table table-striped table-bordered table-hover" id="dataTables">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Parente</th>
+      <th>Descrição</th>
+      <th>User_ID</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @orgtrees.each do |orgtree| %>
+    <tr>
+      <td><%= orgtree.id %></td>
+      <td><%= orgtree.parent %></td>
+      <td><%= orgtree.description %></td>
+      <td><%= orgtree.user_id %></td>
+      <td><%= link_to '<i class="fa fa-eye fa-fw"></i>'.html_safe, orgtree,:class => "btn" %>
+      <%= link_to '<i class="fa fa-edit fa-fw"></i>'.html_safe, edit_orgtree_path(orgtree),
+                      :class => "btn" %>
+      <%= link_to '<i class="fa fa-trash-o fa-fw"></i>'.html_safe, orgtree, method: :delete, data: { confirm: 'Tem certeza?' },
+                      :class => "btn" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= data_tables %>

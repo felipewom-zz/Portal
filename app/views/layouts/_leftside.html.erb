@@ -1,0 +1,160 @@
+<div id="side-bar" class="navbar-static-side" role="navigation">
+  <div class="navbar-collapse collapse">
+    <ul class="nav" id="side-menu">
+      <li class="side-user" style="padding-top: 5px">
+        <a class="hidden" href="../../users/edit"><img class='img-circle' title='<%= current_user.name.titleize %>' alt='Sem foto de perfil' src='../../images/profile/<%=current_user.profile_picture %>'></a>
+        <p title="Permissão de acesso <%= current_user.roles.first.name.capitalize %>" class="welcome">
+          <i class="fa fa-key"></i>
+          Logado como <strong><%= current_user.roles.first.name.capitalize %></strong>
+        </p>
+        <p class="name tooltip-sidebar-logout" title="<%= current_user.name.titleize%> <%= current_user.last_name%>">
+          <%= current_user.name.titleize %>
+          <span class="last-name"><%= current_user.last_name %></span>&nbsp;
+          <%= link_to '<i class="fa fa-sign-out"></i>'.html_safe, destroy_user_session_path, :method=>'delete', title: "Logout..." %>
+          <br/>
+          <i class="fa fa-calendar"></i>
+          <strong title="<%= I18n.localize(Time.now, :format => :short) %>"><%= Time.now.strftime("%d/%m/%Y") %></strong>
+        </p>
+      </li>
+      <li class="sidebar-search">
+          <form action="/search" role="search">
+            <div class="input-group custom-search-form">
+              <input id="file_name" incremental="true" name="file_name" onsearch="true" type="search" class="form-control" placeholder="Pesquisar arquivos..." />
+              <span class="input-group-btn">
+                  <button class="btn btn-default" title="Pesquisar Arquivos" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+              </span>
+            </div>
+          </form><!-- /input-group -->
+      </li>
+      <!--<li>-->
+        <!--<a href="/home"><i class="fa fa-home fa-fw"></i> Página Principal</a>-->
+      <!--</li>-->
+      <% if current_user.id == 3%>
+        <% if params["controller"] == 'folders' %>
+          <!--<li>-->
+            <!--<% link_to '<i class="fa fa-folder-open fa-fw" title="Pastas"></i> Pastas'.html_safe, folders_path%>-->
+          <!--</li>-->
+        <% else %>
+          <!--<li>-->
+            <!--<% link_to '<i class="fa fa-folder fa-fw" title="Pastas"></i> Pastas'.html_safe, folders_path %>-->
+          <!--</li>-->
+        <% end %>
+        <% if params["controller"] == 'uploaders' %>
+          <!--<li>-->
+            <!--<% link_to '<i class="fa fa-file-text fa-fw" title="Upload/Download de Arquivos"></i> Documentos'.html_safe, uploaders_path%>-->
+          <!--</li>-->
+        <% else %>
+          <!--<li>-->
+            <!--<% link_to '<i class="fa fa-file fa-fw" title="Upload/Download de Arquivos"></i> Documentos'.html_safe, uploaders_path %>-->
+          <!--</li>-->
+        <% end %>
+      <% end %>
+      <!--<li>-->
+        <!--<% link_to '<i class="fa fa-hdd-o fa-fw" title="Folders Manager"></i> Gerenciar Pastas'.html_safe, manager_path %>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<% link_to '<i class="fa  fa-sitemap fa-fw" title="Membros da Orgchart"></i> Tabela Organizacional'.html_safe, orgtrees_path %>-->
+      <!--</li>-->
+      <% if user_signed_in? %>
+        <li>
+          <a href="#menu-folders" data-toggle="collapse"><i class="fa fa-code-fork fa-fw"></i> Pastas<span class="fa arrow"></span></a>
+          <ul  class="nav nav-second-level collapse">
+            <% folders.each do |folder| %>
+              <li>
+                <%= link_to "<span title='Visualizar' class='fa fa-folder fa-fw'></span>&nbsp; #{folder.name}".html_safe, folder_path(folder), id: "menu-folders"%>
+              </li>
+            <% end %>
+          </ul>
+          <!-- /.nav-second-level -->
+        </li>
+        <% if current_user.links.empty? %>
+
+        <% else %>
+          <li>
+            <a href="#menu1" data-toggle="collapse" data-dismiss="#menu1" data-parent="#side-menu" >
+              <i class="fa fa-link fa-fw"></i> Links diretos <span class="fa arrow"></span></a>
+            <ul id="menu1" class="nav nav-second-level collapse">
+                <% current_user.links.each do |l| %>
+                  <li><a href="<%= l.url+current_user.id.to_s unless l.url.nil? %>" title="<%= l.title unless l.title.nil? %>"><%= l.name %></a></li>
+                <% end %>
+            </ul>
+            <!-- /.nav-second-level -->
+          </li>
+        <% end %>
+      <% end %>
+      <% if current_user.id == 0 %>
+        <li>
+          <a href="#menuSample" data-toggle="collapse"><i class="fa fa-code-fork fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+          <ul id="menuSample" class="nav nav-second-level collapse">
+            <li>
+              <a href="panels">Panels and Wells</a>
+            </li>
+            <li>
+              <a href="buttons">Buttons</a>
+            </li>
+            <li>
+              <a href="notifications">Notifications</a>
+            </li>
+            <li>
+              <a href="typography">Typography</a>
+            </li>
+            <li>
+              <a href="grid">Grid</a>
+            </li>
+            <li>
+              <a href="#menuSample1" data-toggle="collapse">Third Level <span class="fa arrow"></span></a>
+              <ul id="menuSample1" class="nav nav-third-level collapse">
+                <li>
+                  <a href="blank">Third Level Item</a>
+                </li>
+                <li>
+                  <a href="blank">Third Level Item</a>
+                </li>
+                <li>
+                  <a href="blank">Third Level Item</a>
+                </li>
+                <li>
+                  <a href="blank">Third Level Item</a>
+                </li>
+              </ul>
+              <!-- /.nav-third-level -->
+            </li>
+          </ul>
+          <!-- /.nav-second-level -->
+        </li>
+        <li>
+          <a href="#menuSample2" data-toggle="collapse"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+          <ul id="menuSample2" class="nav nav-second-level collapse">
+            <li>
+              <a href="blank">Blank Page</a>
+            </li>
+            <li>
+              <a href="login">Login Page</a>
+            </li>
+          </ul>
+          <!-- /.nav-second-level -->
+        </li>
+        <li>
+          <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li>
+              <a href="flot">Flot Charts</a>
+            </li>
+          </ul>
+          <!-- /.nav-second-level -->
+        </li>
+        <li>
+          <a href="tables"><i class="fa fa-table fa-fw"></i> Tables</a>
+        </li>
+        <li>
+          <a href="forms"><i class="fa fa-edit fa-fw"></i> Forms</a>
+        </li>
+      <% end %>
+    </ul>
+    <!-- /side-menu -->
+  </div>
+  <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

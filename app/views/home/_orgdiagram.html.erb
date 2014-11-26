@@ -1,0 +1,148 @@
+<div id="message">
+</div>
+<div id="orgdiagram">
+</div>
+<script src="../../plugins/orgchart/jquery-ui-1.10.4.custom.js"></script>
+<script src="../../plugins/orgchart/primitives.latest.js"></script>
+<script src="../../plugins/orgchart/bporgeditor.latest.js"></script>
+<script type='text/javascript'>
+//<![CDATA[
+  jQuery(window).load(function () {
+      var options = new primitives.orgdiagram.Config();
+      var items = [];
+      var itemsIds = [];
+      <% tree_users = Orgtree.all.to_a
+         tree_users.each do |user| %>
+        itemsIds.push(<%= user.id%>);
+        items.push(
+              new primitives.orgdiagram.ItemConfig({
+                  id: "<%= user.id%>",
+                  parent: <%= user.parent %>,
+                  title: "<%= user.user.name unless user.user.blank?%>",
+                  description: "<%= raw(user.description)%>",
+                  job: "<%= user.desc_job%>",
+                  image: "<%= user.image%>",
+                  phone: "<%= user.user.phone unless user.user.blank?%>",
+                  email: "<%= user.user.email unless user.user.blank? %>",
+                  templateName: "<%= user.templateName%>",
+                  href: "<%= user.href%>",
+                  itemTitleColor: <%= user.itemTitleColor%>
+              }));
+      <% end%>
+      function alertUserModal(title, text) {
+          var orgModal =
+                    '<div class="panel-body">'+
+                    '<div id="alert_org" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+                    '  <div id="alertbody" class="modal-dialog">  '+
+                    '    <div  class="modal-content"> '+
+                    '      <div class="modal-header"> '+
+                    '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> '+
+                    '        <h4 class="modal-title">'+title+'</h4> '+
+                    '      </div>  '+
+                    '      <div class="modal-body"> '+
+                    '         <div class="container"> '+
+                                text +
+                    '         </div>   '+
+                    '      </div>  '+
+                    '    </div>  '+
+                    '  </div>  '+
+                    '</div>  ';
+
+          var alertOrgModal = document.createElement("div");
+          alertOrgModal.innerHTML = orgModal;
+          var divModal = document.getElementById("message");  // find "demo"
+          divModal.replaceChild(alertOrgModal.firstChild, divModal.firstChild);
+      };
+      options.items = items;
+      options.cursorItem = 0;
+      options.hasSelectorCheckbox = primitives.common.Enabled.False;
+      options.templates = [getContactTemplate()];
+      options.onItemRender = onTemplateRender;
+//      options.cursorItem = null;
+      options.pageFitMode = primitives.orgdiagram.PageFitMode.Page;
+      options.selectionPathMode = primitives.orgdiagram.SelectionPathMode.None;
+//      options.hasSelectorCheckbox = primitives.common.Enabled.True;
+      options.selectedItems = itemsIds;
+      options.onMouseClick = function (e, data) {
+        var message = data.context.description + "<br\>" + data.context.job + "<br\>" + data.context.email + "<br\>" + data.context.phone;
+        alertUserModal(data.context.title , message);
+      };
+      jQuery("#orgdiagram").orgDiagram(options);
+      jQuery("input:radio[name=selectionPathMode]").change(function () {
+        jQuery("#orgdiagram").orgDiagram("option",
+                {
+                  "selectionPathMode": parseInt(jQuery("input:radio[name=selectionPathMode]:checked").val()),
+                  "cursorItem": null
+                });
+        jQuery("#orgdiagram").orgDiagram("update", primitives.orgdiagram.UpdateMode.Refresh);
+      });
+
+      function onTemplateRender(event, data) {
+          var hrefElement = data.element.find("[name=readmore]");
+          var emailElement = data.element.find("[name=email]");
+          switch (data.renderingMode) {
+              case primitives.common.RenderingMode.Create:
+                  /* Initialize widgets here */
+                  hrefElement.click(function (e) {
+                      /* Block mouse click propogation in order to avoid layout updates before server postback*/
+                      primitives.common.stopPropagation(e);
+                  });
+                  emailElement.click(function (e) {
+                      /* Block mouse click propogation in order to avoid layout updates before server postback*/
+                      primitives.common.stopPropagation(e);
+                  });
+                  break;
+              case primitives.common.RenderingMode.Update:
+                  /* Update widgets here */
+                  break;
+          }
+          var itemConfig = data.context;
+          if (data.templateName == "contactTemplate") {
+              data.element.find("[name=titleBackground]").css({ "background": itemConfig.itemTitleColor });
+              data.element.find("[name=photo]").attr({ "src": itemConfig.image });
+              hrefElement.attr({ "href": itemConfig.href });
+              emailElement.attr({ "href": ("mailto:" + itemConfig.email + "?Subject=Hello%20again") });
+              var fields = ["title", "description", "phone", "email", "job"];
+              for (var index = 0; index < fields.length; index++) {
+                  var field = fields[index];
+                  var element = data.element.find("[name=" + field + "]");
+                  if (element.text() != itemConfig[field]) {
+                      element.text(itemConfig[field]);
+                  }
+              }
+          }
+      }
+
+      function getContactTemplate() {
+          var result = new primitives.orgdiagram.TemplateConfig();
+          result.name = "contactTemplate";
+          result.itemSize = new primitives.common.Size(160, 90);
+          result.minimizedItemSize = new primitives.common.Size(15, 15);
+          result.highlightPadding = new primitives.common.Thickness(1, 1, 1, 1);
+          var itemTemplate = jQuery(
+                                      '<div class="bp-item bp-corner-all bt-item-frame">'
+                                    +   '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 2px; left: 2px; width: 154px; height: 20px;">'
+                                    +     '<div name="description" id="description" class="bp-item bp-title" style="font-family:Verdana ;top: 1px; left: 4px; width: 154px; height: 18px;">'
+                                    +     '</div>'
+                                    +   '</div>'
+                                    +   '<div name="title" class="bp-item" style="top: 22px; left: 5px; width: 162px; height: 18px; font-size: 13px; color: #ff0000; font-weight: bold">'
+                                    +   '</div>'
+                                    +   '<div name="job" class="bp-item" style="top: 36px; left: 5px; width: 162px; height: 18px; font-size: 12px;">'
+                                    +   '</div>'
+                                    +   '<div class="bp-item" style="top: 50px; left: 5px; width: 163px; height: 14px; font-size: 10px;">'
+                                    +     '<a name="email" href="" target="_top"></a>'
+                                    +   '</div>'
+                                    +   '<div class="bp-item" style="top: 56px; left: 128px; width: 28px; height: 30px; border-radius: 5px;">'
+                                    +     '<button class="btn btn-primary" data-toggle="modal" data-target="#alert_org" title="Detalhes..."><span style="position: relative; left: -8px; top: -5px;font-size: 24px;" class="fa fa-user" ></span></button>'
+                                    +   '</div>'
+                                    + '</div>'
+                                    ).css({
+                                          width: result.itemSize.width + "px",
+                                          height: result.itemSize.height + "px"
+                                    }).addClass("bp-item bp-corner-all bt-item-frame");
+          result.itemTemplate = itemTemplate.wrap('<div>').parent().html();
+          return result;
+      }
+  });
+  //]]>
+</script>

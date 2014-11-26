@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-lg-3">
+    <h5 class="hidden-xs">
+      <i class="fa fa-hdd-o fa-fw"></i>
+      &nbsp;<strong>Gerenciador de Pastas</strong>
+    </h5>
+  </div>
+  <div class="pull-left">
+    <%= render 'uploaders/modal_form'%>
+    <%= link_to '<i title="Atualizar" class="fa fa-refresh"></i>'.html_safe, manager_path, :back => manager_path%>
+  </div>
+</div>
+<div id="manager_view">
+  <% @folders.each do |folder| %>
+    <div id="div-expand-folder">
+      <a class="active" title="Expandir pasta <%= folder.name.titleize %>" id="toggler_<%= folder.id%>" href="#" data-toggle="collapse" data-target="#folder_<%= folder.id%>">
+        <i class="fa fa-folder-open fa-fw"></i>
+        <i class="fa fa-folder fa-fw"></i>
+        <label id="manager-folder-name"><%= folder.name %></label>
+        <i title="Expandir" class="fa fa-plus-circle pull-right "></i>
+        <i title="Minimizar" class="fa fa-minus-circle pull-right "></i>
+      </a>
+      <div class="pull-right">
+        <%= link_to '<i title="Visualizar Pasta" class="glyphicon glyphicon-eye-open"></i>'.html_safe, folder_path(folder), :back => manager_path%>
+      </div>
+      <div class="pull-right">
+        <% unless folder.uploaders.empty? %>
+          <% files = folder.uploaders.pluck(:id) %>
+          <%= link_to '<i title="Baixar todos os arquivos" class="fa fa-download"></i>'.html_safe,
+                      :action => 'download_all', :controller=>'uploaders', method: 'get', :id => files %>
+          <%= link_to '<i class="fa fa-upload" title="Armazenar arquivo na pasta"></i>'.html_safe,
+                      :action => 'new', :controller=>'uploaders', method: 'get', :folder_id => folder.id , :back => manager_path %>
+          <i class="hidden-xs" style="color: #777777; font-size: 8px;"> Arquivos: <%= folder.uploaders.count %>&nbsp;&nbsp;&nbsp;</i>
+        <% else %>
+          <%= link_to '<i class="fa fa-upload" title="Armazenar arquivo na pasta"></i>'.html_safe,
+                      :action => 'new', :controller=>'uploaders', method: 'get', :folder_id => folder.id  %>
+          <i class="hidden-xs" style="color: #777777; font-size: 8px;"> Pasta vazia&nbsp;&nbsp;&nbsp;</i>
+        <% end %>
+        <%= link_to '<i title="Deletar Pasta" class="glyphicon glyphicon-trash white"></i>'.html_safe, folder, method: :delete, data: { confirm: 'Deseja deletar?' }%>
+      </div>
+      <div id="folder_<%= folder.id%>" class="collapse">
+        <ul class="nav nav-list">
+          <% if folder.uploaders.blank? %>
+            <li class="nav-header visible-xs text-muted" style="padding-left: 10px; padding-top: 10px; font-size: 10px; font-weight: bold"><%= folder.name %></li>
+            <li class="text-muted content" style="padding-bottom: 10px; padding-left: 10px; font-size: 12px">Pasta vazia...</li>
+          <% else %>
+            <li class="nav-header visible-xs text-muted" style="padding-left: 10px; font-size: 10px; font-weight: bold"><%= folder.name %></li>
+            <li>
+              <div class="table-responsive" style="padding: 5px">
+                <table class="table table-striped table-bordered table-hover" id="dataTables-folderManager_<%= folder.id%>">
+                  <thead>
+                  <tr>
+                    <th>Nome do Arquivo</th>
+                    <th class="hidden-xs">Author</th>
+                    <th class="hidden-xs">Criação</th>
+                    <th class="hidden-xs">Tipo</th>
+                    <th class="hidden-xs">Pasta</th>
+                    <th class="hidden-xs">Tamanho</th>
+                    <th style="position: relative; text-align: center;"><span title="Links" class="fa fa-link fa-fw"></span></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% folder.uploaders.each do |uploader| %>
+                    <tr>
+                      <% @details = "• Nome do Arquivo: " +  uploader.file_name +
+                              "
+•  Autor: " + uploader.author +
+                              "
+•  Criação: " + uploader.created_at.strftime("%d, %b %Y - %H:%M") +
+                              "
+•  Tipo: "+uploader.content_type+
+                              "
+•  Tamanho: "+ number_to_human_size(uploader.file_size) %>
+                      <td title="<%= @details %> ">
+                        <%= link_to "#{uploader.file_name}".html_safe,
+                                    :action => "download_file", :controller=>'uploaders', method: 'get', :id => uploader.id %></td>
+                      <td class="hidden-xs"><%= uploader.author %></td>
+                      <td class="hidden-xs"><%= uploader.created_at.strftime("%d/%m/%Y  %H:%M") %></td>
+                      <td class="hidden-xs"><%= uploader.content_type %></td>
+                      <td class="hidden-xs"><%= uploader.folder.name.capitalize unless uploader.folder.nil? %></td>
+                      <td class="hidden-xs"><%= number_to_human_size(uploader.file_size) %></td>
+                      <td><%= link_to '<span title="Download do arquivo" class="glyphicon glyphicon-download"></span>'.html_safe,
+                                      :action => "download_file", :controller=>'uploaders', method: 'get', :id => uploader.id %>
+                        <%= link_to '<span title="Deletar" class="glyphicon glyphicon-trash"></span>'.html_safe,
+                                    uploader, method: :delete, confirm: "Tem certeza que deseja deletar #{uploader.file_name}?" %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div><!-- /.table-responsive -->
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <%end%>
+</div>
+<%= page_entries_info @folders, 'pastas' %>
+<%= paginate @folders %>
+<script src="plugins/dataTables/jquery.dataTables.js"></script>
+<script src="plugins/dataTables/dataTables.bootstrap.js"></script>
+<script>
+  <% @folders.each do |folder| %>
+  $(document).ready(function(){
+    $("#toggler_<%= folder.id%>").click(function(){
+      $(this).toggleClass('inactive');
+    });
+    $('#dataTables-folderManager_<%= folder.id%>').dataTable({
+    });
+  });
+  <%end%>
+</script>
+

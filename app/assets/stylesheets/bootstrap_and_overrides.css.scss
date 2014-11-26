@@ -1,0 +1,204 @@
+@import "bootstrap";
+@import "bootstrap/responsive-utilities";
+@import "bootstrap/buttons";
+@import "bootstrap/theme";
+@import "bootstrap/forms";
+html{
+  height: 100%;
+  background-image: linear-gradient(to right, #f5f5f5 20%,#073a79 100%);
+}
+
+body{
+  font-family: Lucida Grande, sans-serif !important;
+  font-size: 12px!important;
+  padding-top: 100px;
+  background-color: transparent;
+  .fa{
+    font-size: 16px;
+  }
+  .i{
+    font-size: 16px;
+  }
+}
+//Navbar
+.navbar-static-top, .navbar-fixed-top, .navbar-fixed-bottom {
+  border-radius: 0;
+  border-width: 0 0 0px;
+  background-image: linear-gradient(to right, #f5f5f5 20%, #073A79 100%);
+  i{
+    color: #f5f5f5;
+  }
+}
+.navbar-collapse {
+  max-height: 100%!important;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-top: 0px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  -webkit-overflow-scrolling: touch;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: #f5f5f5!important;
+  border-color: #073A79;
+  text-decoration: wavy;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #ffffff;
+  border-color: #073A79;
+}
+.navbar-static-top span, .navbar-fixed-top span, .navbar-fixed-bottom span, .navbar-header span {
+  color: #073A79;
+}
+//Panel
+.panel {
+  margin-bottom: $line-height-computed;
+  background-color: $panel-bg;
+  border: 0px solid #F3F3F3;
+  border-radius: $panel-border-radius;
+  @include box-shadow(0 1px 1px rgba(0,0,0,.05));
+  height: 100%;
+}
+.panel-body {
+  padding: 5px;
+}
+.panel .panel-heading{
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 50px;
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  background-image: linear-gradient(to right, #f5f5f5 0%,#073A79 100%);
+}
+.toggle-head{
+  background-image: linear-gradient(to right, #f5f5f5 20%,#073A79 100%)!important;
+}
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  //  margin: $line-height-computed 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: $border-radius-base;
+  > li {
+    display: inline; // Remove list-style and block-level defaults
+    > a,
+    > span {
+      position: relative;
+      float: left; // Collapse white-space
+      padding: $padding-base-vertical $padding-base-horizontal;
+      line-height: $line-height-base;
+      text-decoration: none;
+      color: $pagination-color;
+      background-color: $pagination-bg;
+      border: 1px solid $pagination-border;
+      margin-left: -1px;
+    }
+    &:first-child {
+      > a,
+      > span {
+        margin-left: 0;
+        @include border-left-radius($border-radius-base);
+      }
+    }
+    &:last-child {
+      > a,
+      > span {
+        @include border-right-radius($border-radius-base);
+      }
+    }
+  }
+  > li > a,
+  > li > span {
+    &:hover,
+    &:focus {
+      color: $pagination-hover-color;
+      background-color: $pagination-hover-bg;
+      border-color: $pagination-hover-border;
+    }
+  }
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      z-index: 2;
+      color: $pagination-active-color;
+      background-color: $pagination-active-bg;
+      border-color: $pagination-active-border;
+      cursor: default;
+    }
+  }
+
+  > .disabled {
+    > span,
+    > span:hover,
+    > span:focus,
+    > a,
+    > a:hover,
+    > a:focus {
+      color: $pagination-disabled-color;
+      background-color: $pagination-disabled-bg;
+      border-color: $pagination-disabled-border;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Large
+.pagination-lg {
+  @include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $border-radius-large);
+}
+
+// Small
+.pagination-sm {
+  @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $border-radius-small);
+}
+
+// Modal
+//header
+.modal-header {
+  padding: $modal-title-padding;
+  border-bottom: 2px solid $modal-header-border-color;
+}
+
+// Title text within header
+.modal-title {
+  font-size: 16px!important;
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  position: relative;
+  padding: $modal-inner-padding;
+}
+
+// Form
+.form-control {
+  display: block;
+  width: 330px;
+  height: auto;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $input-color;
+}
+//Table
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  border-top: 1px solid #ddd;
+  line-height: 1.42857;
+  padding: 5px;
+  vertical-align: top;
+}

@@ -1,0 +1,270 @@
+// Mobile
+@media(max-width:400px) {
+  .panel-body{
+    padding: 0px!important;
+    height: 100% !important;
+    .pagination{
+      font-size: 12px;
+    }
+    .row{
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+  .pagination-header{
+    margin-top: 10px !important;
+  }
+  #manager_view{
+    #div-expand-folder {
+      background-color: #ffffff;
+      border-color: #ded4d4;
+      border-radius: 5px;
+      border-style: solid;
+      border-width: 1px;
+      margin: 0 0 -1px;
+      a{
+        i{
+          font-size: 18px;
+          padding-top: 5px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+        text-decoration: none;
+      }
+    }
+    .nav{
+      .content{
+        font-size: 10px !important;
+      }
+    }
+    .active i.fa-folder{display:inline-block; color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .active i.fa-folder-open{display:none;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .active i.fa-minus-circle{display:none;padding-top: 7px!important;}
+    .active i.fa-plus-circle{display:inline-block;padding-top: 7px!important;}
+    .inactive i.fa-folder-open{display:inline-block;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .inactive i.fa-folder{display:none;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .inactive i.fa-plus-circle{display:none;padding-top: 7px!important;}
+    .inactive i.fa-minus-circle{display:inline-block;padding-top: 7px!important;}
+    #manager-folder-name{
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      text-overflow: ellipsis;
+      top: 5px;
+      white-space: nowrap;
+      width: 150px;
+      font-size: 14px;
+      color: #6e6e6e;
+      font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    }
+    .dataTables_wrapper{
+      font-size: 10px;
+      td{
+        vertical-align: middle ;
+      }
+      select.input-sm, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn {
+        height: 24px!important;
+        line-height: 22px!important;
+        font-size: 10px;
+      }
+      .input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn {
+        border-radius: 3px;
+        font-size: 10px;
+        height: 24px;
+        line-height: 1.5;
+        padding: 5px 10px;
+      }
+      span, i{
+        text-align: center;
+        font-size: 18px;
+        padding-left: 15px;
+      }
+    }
+  }
+  .w2ui-col-on-off, .w2ui-grid-searches{
+    table{
+      tbody{
+        tr{
+          td{
+            color: #000000;
+            label{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  .sidebar-collapse {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  #register{
+    margin-top: -50px;
+    padding-top: -100px;
+  }
+  .orgdiagram{
+    height: 480px!important;
+    width: 400px!important;
+    overflow-x: visible;
+    overflow-y: visible;
+    cursor: pointer !important;
+  }
+  #login{
+    position: relative;
+    padding-top: 0px;
+    top: -100px;
+    width: 100%;
+    height: 100%;
+    margin: 0px !important;
+  }
+  #wrapper-logged-off{
+    width: 100% !important;
+    height: 100%!important;
+  }
+  #portal-brand{
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+@media(max-width:320px) {
+  .panel-body{
+    padding: 0px!important;
+    height: 100% !important;
+    .pagination{
+      font-size: 12px;
+    }
+    .row{
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+  .pagination-header{
+    margin-top: 10px !important;
+  }
+  #manager_view{
+    #div-expand-folder {
+      background-color: #ffffff;
+      border-color: #ded4d4;
+      border-radius: 5px;
+      border-style: solid;
+      border-width: 1px;
+      margin: 0 0 -1px;
+      a{
+        i{
+          font-size: 18px;
+          padding-top: 5px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+        text-decoration: none;
+      }
+    }
+    .nav{
+      .content{
+        font-size: 10px !important;
+      }
+    }
+    .active i.fa-folder{display:inline-block; color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .active i.fa-folder-open{display:none;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .active i.fa-minus-circle{display:none;padding-top: 7px!important;}
+    .active i.fa-plus-circle{display:inline-block;padding-top: 7px!important;}
+    .inactive i.fa-folder-open{display:inline-block;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .inactive i.fa-folder{display:none;color: #DFBA41; font-size: 22px !important;padding-bottom: 2px}
+    .inactive i.fa-plus-circle{display:none;padding-top: 7px!important;}
+    .inactive i.fa-minus-circle{display:inline-block;padding-top: 7px!important;}
+    #manager-folder-name{
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      text-overflow: ellipsis;
+      top: 5px;
+      white-space: nowrap;
+      width: 100px;
+      font-size: 14px;
+      color: #6e6e6e;
+      font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    }
+    .dataTables_wrapper{
+      font-size: 10px;
+      td{
+        vertical-align: middle ;
+      }
+      select.input-sm, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn {
+        height: 24px!important;
+        line-height: 22px!important;
+        font-size: 10px;
+      }
+      .input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn {
+        border-radius: 3px;
+        font-size: 10px;
+        height: 24px;
+        line-height: 1.5;
+        padding: 5px 10px;
+      }
+      span, i{
+        text-align: center;
+        font-size: 18px;
+        padding-left: 10px;
+      }
+    }
+  }
+  .w2ui-col-on-off, .w2ui-grid-searches{
+    table{
+      tbody{
+        tr{
+          td{
+            color: #000000;
+            label{
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
+  .w2ui-col-expand, .w2ui-head, .w2ui-button :hover {
+    cursor: pointer !important;
+  }
+  .w2ui-select-field{
+    cursor: pointer !important;
+  }
+  .sidebar-collapse {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  #register{
+    margin-top: -50px;
+    padding-top: -100px;
+  }
+  .orgdiagram{
+    height: 480px!important;
+    width: 400px!important;
+    overflow-x: visible;
+    overflow-y: visible;
+    cursor: pointer !important;
+  }
+  #login{
+    position: relative;
+    padding-top: 0px;
+    top: -100px;
+    width: 100%;
+    height: 100%;
+    margin: 0px !important;
+  }
+  #wrapper-logged-off{
+    width: 100% !important;
+    height: 100%!important;
+  }
+  #portal-brand{
+    font-size: 22px;
+    font-weight: bold;
+  }
+}

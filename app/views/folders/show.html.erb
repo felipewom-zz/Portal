@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-lg-2">
+    <h5>
+      <strong>Pasta
+        <i class="text-dark-blue">
+          &nbsp;<%= @folder.name %></i>
+      </strong>
+    </h5>
+  </div>
+  <div class="pull-left">
+    <%= link_to '<span class="fa fa-edit fa-fw"></span>'.html_safe, edit_folder_path(@folder),:title => "Editar esta Pasta", class: "btn" %>
+    <%= link_to '<span class="fa fa-upload fa-fw"></span>'.html_safe, new_uploader_path(@folder), :title => "Armazenar Arquivos", class: "btn" %>
+    <%= render 'uploaders/modal_form'%>
+  </div>
+</div>
+<table class="table table-striped table-bordered table-hover" id="dataTables">
+  <thead>
+    <tr>
+      <th>Nome do Arquivo</th>
+      <th class="hidden-xs">Author</th>
+      <th class="hidden-xs">Criação</th>
+      <th class="hidden-xs">Tipo</th>
+      <th class="hidden-xs">Pasta</th>
+      <th class="hidden-xs">Tamanho</th>
+      <th style="position: relative; text-align: center;"><span title="Links" class="fa fa-link fa-fw"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @uploaders.each do |uploader| %>
+      <tr>
+<% @details = "• Nome do Arquivo: " +  uploader.file_name +
+"
+•  Autor: " + uploader.author +
+"
+•  Criação: " + uploader.created_at.strftime("%d, %b %Y - %H:%M") +
+"
+•  Tipo: "+uploader.content_type+
+"
+•  Tamanho: "+ number_to_human_size(uploader.file_size) %>
+        <td title="<%= @details %> ">
+          <%= link_to "#{uploader.file_name}".html_safe,
+                      :action => "download_file", :controller=>'uploaders', method: 'get', :id => uploader.id %></td>
+        <td class="hidden-xs"><%= uploader.author %></td>
+        <td class="hidden-xs"><%= uploader.created_at.strftime("%d/%m/%Y  %H:%M") %></td>
+        <td class="hidden-xs"><%= uploader.content_type %></td>
+        <td class="hidden-xs"><%= uploader.folder.name.capitalize unless uploader.folder.nil? %></td>
+        <td class="hidden-xs"><%= number_to_human_size(uploader.file_size) %></td>
+        <td><%= link_to '<span title="Download do arquivo" class="glyphicon glyphicon-download"></span>'.html_safe,
+                        :action => "download_file", :controller=>'uploaders', method: 'get', :id => uploader.id %>
+          <%= link_to '<span title="Deletar" class="glyphicon glyphicon-trash"></span>'.html_safe,
+                      uploader, method: :delete, confirm: "Tem certeza que deseja deletar #{uploader.file_name}?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= data_tables %>
