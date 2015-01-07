@@ -46,8 +46,8 @@ PortalCTO::Application.configure do
     address: "smtp.gmail.com",
     domain: "gmail.com",
     authentication: "plain",
-    user_name: "equipehjm@gmail.com",
-    password: "lemonde@237",
+    user_name: "xxxxx@gmail.com",
+    password: "xxxxxxxxxx",
   enable_starttls_auto: true}
 
 end
